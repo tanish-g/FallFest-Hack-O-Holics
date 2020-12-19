@@ -46,8 +46,8 @@ $(document).ready(function () {
                 $('.loader').hide();
                 $('#result').fadeIn(600);
                 $('#result').text(' Result:  ' + data);
-                 $('.heading').show();
                 $('.report').show();
+                $('.heading').show();
                 console.log('Success!');
             },
         });
