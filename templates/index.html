@@ -1,0 +1,141 @@
+{% extends "base.html" %} {% block content %}
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+      <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyA-SI9K3d8eP3JM-OI2ZAwemVjuNOLtedg",
+    authDomain: "skinegy-d4fb1.firebaseapp.com",
+    databaseURL: "https://skinegy-d4fb1-default-rtdb.firebaseio.com",
+    projectId: "skinegy-d4fb1",
+    storageBucket: "skinegy-d4fb1.appspot.com",
+    messagingSenderId: "755289752228",
+    appId: "1:755289752228:web:30860161fa5c30cac99c31"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<h2>Please Choose the ECG Image file</h2>
+
+<div>
+ <center> <div class="heading" style="display: none;"> <h2 style=" color: #915F6D;"><u>REPORT</u></h2></div></center>
+    <form id="upload-file" method="post" enctype="multipart/form-data">
+        <label for="imageUpload" class="upload-label">
+            Choose...
+        </label>
+        <input type="file" name="file" id="imageUpload" accept="image/*">
+<center>
+    <div class="image-section">
+        <div class="img-preview">
+            <div id="imagePreview">
+            </div>
+        </div>
+        <div> 
+            <button type="button" class="btn btn-primary btn-lg " onclick="save()" id="btn-predict">Predict!</button>
+        </div>
+    </div>
+    </center>
+ </form>
+    <div class="loader" style="display:none;"></div>
+
+    <h3 id="result">
+        <span> </span>
+    </h3>
+    <div class="report" id="report" style="display:none;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+                    <h4>Name :</h4>
+                </div>
+                <div class="col-9">
+                    <h4 id="name"></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <h4>Age :</h4>
+                </div>
+                <div class="col-9">
+                    <h4 id="age"></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <h4>Sex :</h4>
+                </div>
+                <div class="col-9">
+                    <h4 id="sex"></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <h4>Email-id :</h4>
+                </div>
+                <div class="col-9">
+                    <h4 id="email"></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+  // Initialize Firebase
+  
+  var storage = firebase.storage();
+        function save(){
+            var image=document.getElementById("imageUpload").files[0];
+            var imagename=image.name;
+            var storageRef = storage.ref('images/'+imagename);
+            var uploadtask=storageRef.put(image);
+            uploadtask.on('state_changed',function(snapshot){
+                var progress=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+                console.log("upload is "+progress+" done");
+            },function(error){
+                console.log(error.message);
+            },function(){
+                uploadtask=snapshot.ref.getDownloadURL().then(function(downloadURL){
+                    console.log(downloadURL);
+                });
+            });
+        }
+        firebase.auth().onAuthStateChanged(function(user){ 
+       if (user) { 
+  // User is signed in.
+        var id= user.uid;
+        
+        var ref = firebase.database().ref();
+        firebase.database().ref('/users/' + id).once('value').then((snapshot) => {
+           document.getElementById('name').innerHTML = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        document.getElementById('email').innerHTML = user.email;
+        document.getElementById('age').innerHTML = (snapshot.val() && snapshot.val().age) || 'Anonymous';
+        document.getElementById('sex').innerHTML = (snapshot.val() && snapshot.val().gender) || 'Anonymous';
+  // ...
+        });
+        } else {
+  // No user is signed in.
+  window.alert("Please Sign-Up first!");
+          }
+    });
+
+    </script>
+
+{% endblock %}
