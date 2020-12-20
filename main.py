@@ -51,6 +51,16 @@ def profile():
     return render_template('profile.html')
 
 @app.route('/predict', methods=['POST'])
+def upload1():
+    # Get the file from post request
+    f = request.files['file']
+    labs=['MELANOMA (MALIGNANT)', 'MELANOCYTIC NEVUS (BENIGN)/ NORMAL SKIN /RASH', 'BASAL CELL CARCINOMA (BENIGN)', 'ACTINIC KERATOSIS (BENIGN)', 'BENIGN KERATOSIS (BENIGN)', 'DERMATOFIBROMA (NON CANCEROUS-BENIGN)', 'VASCULAR LESION (MAYBE BENIGN MAYBE MALIGNANT)', 'SQUAMOUS CELL CARCINOMA(MALIGNANT)']
+    # Make prediction
+    preds = model_predict(f, model)
+    result = labs[preds]
+    return result
+
+@app.route('/predict1', methods=['POST'])
 def upload():
     # Get the file from post request
     if request.method =='POST':
