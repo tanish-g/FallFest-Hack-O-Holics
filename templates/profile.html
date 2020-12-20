@@ -349,26 +349,35 @@ input {
         gender="other";
       }
      firebase.auth().onAuthStateChanged(function(user){ 
-       if (user) { 
-  // User is signed in.
-        var id= user.uid;
-        var email=user.email;
-        db.ref('users/' + id).set({
-          username: username,
-            email: email,
-            age : age,
-            address: address,
-            gender: gender
-        });
-        //var url = window.location.href+"imageUpload" ;
-        var url = "https://skinegy.herokuapp.com/"+"imageUpload" ;
-         url="https://hackfall.herokuapp.com/imageUpload";
-           window.location.replace(url);  
+         if (user) { 
+           // User is signed in.
+          var id= user.uid;
+          var email=user.email;
+            //  window.alert("welcome "+id);
+          firebase.database().ref('users/' + id).set({
+               username: username,
+               email: email,
+               age : age,
+               address: address,
+               gender: gender
+         }, (error) => {
+           if (error) {
+             // The write failed...
+             console.log("failed");
+             window.alert("Please, try again or check your login credentials!");
+           } else {
+             // Data saved successfully!
+             console.log("done!!");
+            // var url = "file:///C:/Users/HP/WebNode/fallfest%20frontend/home.html" ;
+             var url="https://hackfall.herokuapp.com/imageUpload";
+             window.location.replace(url);  
+           }
+         }); 
         } else {
-  // No user is signed in.
-  window.alert("Please Sign-Up first!");
-          }
-    });
+           // No user is signed in.
+           window.alert("Please Sign-Up first!");
+            }
+        });
 }
   </script>
   </html>
