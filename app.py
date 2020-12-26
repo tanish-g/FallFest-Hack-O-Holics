@@ -46,27 +46,27 @@ def index():
     return render_template('index.html')
 
 @app.route('/covid',methods=['GET'])
-def index():
+def covid():
     # image upload page
     return render_template('covid.html')
 
 @app.route('/bt',methods=['GET'])
-def index():
+def bt():
     # image upload page
     return render_template('bt.html')
 
 @app.route('/malaria',methods=['GET'])
-def index():
+def malaria():
     # image upload page
     return render_template('malaria.html')
 
 @app.route('/pneumonia',methods=['GET'])
-def index():
+def pneumonia():
     # image upload page
     return render_template('pneumonia.html')
 
 @app.route('/alzymer',methods=['GET'])
-def index():
+def alzymer():
     # image upload page
     return render_template('alzymer.html')
 
