@@ -118,7 +118,7 @@ nav{
 #hero {
   width: 100%;
   height: 90vh;
-  background-image: url("fixed.png"),url('{{url_for('static', filename='fixed.png')}}');
+  background-image: url("scaler-02.jpg"),url('{{url_for('static', filename='scaler-02.jpg')}}');
   background-size: cover;
   position: relative;
   margin-bottom: -50px;
@@ -134,11 +134,11 @@ nav{
   font-weight: 700;
   line-height: 56px;
   text-transform: uppercase;
-  color: #2c4964;
+  color: #915F6D;
 }
 
 #hero h2 {
-  color: #2c4964;
+  color: #915F6D;
   margin: 10px 0 0 0;
   font-size: 24px;
 }
@@ -322,7 +322,7 @@ nav{
   padding: 15px; 
   cursor: pointer;
 }
-.active{
+.activ{
   background-color: #915F6D;
   color: #fff;
   font-size: 0.8rem;
@@ -338,26 +338,36 @@ nav{
   </style>
 </head>
 <body>
-<h2>Please select the image to be tested</h2>
 
 <div>
  <!--Navbar-->
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
   <div class="container-fluid">
-  <a class="navbar-brand" href="#">Sonali Verma</a> 
+  <a class="navbar-brand" href="#">Skinegy</a>  
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
     <span class="navbar-toggler-icon">
     </span>
   </button>
   <div class="collapse navbar-collapse" id="navbarResponsive">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item active"> <a class="ab" href="#about">About</a></li>
-       <li class="nav-item "><a class="ab"href="#education">Education</a></li>
-       <li class="nav-item "><a class="ab" href="#skills">Skills</a></li>
-       <li class="nav-item "><a class="ab" href="#contact">Contact</a></li>
+      <li class="nav-item active">
+      <a href="#" class="nav-link">Home</a>
+    </li>
+    <li class="nav-item">
+      <a href="#about" class="nav-link">About</a>
+    </li>
+    <li class="nav-item">
+      <a href="#contact" class="nav-link">Contact</a>
+    </li>
+    <li class="nav-item">
+      <a href="#faq" class="nav-link">Getting Started</a>
+    </li>
+    <li class="nav-item">
+      <a href="#login" class="nav-link">Login/Signup</a>
+    </li>
     </ul>
   </div>
-  </div> 
+  </div>
 </nav>
 
 <section id="hero" class="d-flex align-items-center">
@@ -406,7 +416,7 @@ nav{
                 </div> 
                 <div class="col-6"> 
                   <div class="row">
-                    <div class="col-2 select first active" onclick="first()" id="first"> 
+                    <div class="col-2 select first activ" onclick="first()" id="first"> 
                       <div class="row d-flex justify-content-center">
                         <i class="fas fa-link"></i>
                       </div>
@@ -524,16 +534,16 @@ nav{
  function second() {  
   var first =document.getElementById("first");
    var second =document.getElementById("second");
-  first.className = first.className.replace(" active", "");
- second.className += " active";
+  first.className = first.className.replace(" activ", "");
+ second.className += " activ";
  document.getElementById("desc").style.display="block";
  document.getElementById("first1").style.display="none";
 };
  function first() {  
   var first =document.getElementById("first");
    var second =document.getElementById("second");
-  second.className = second.className.replace(" active", "");
- first.className += " active";
+  second.className = second.className.replace(" activ", "");
+ first.className += " activ";
  document.getElementById("desc").style.display="none";
  document.getElementById("first1").style.display="block";
 };
