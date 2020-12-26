@@ -90,7 +90,7 @@
   background: #F5F5F5;
 }
 nav{
-  overflow: auto;
+  z-index: 999;
 }
 .navbar{
   padding: .8rem;
@@ -106,7 +106,10 @@ nav{
    color: white;
    text-decoration:none;
 }
- .nav-item a:hover {
+.dropdown-menu a{
+  color: black;
+}
+ .nav-item a:hover, .dropdown-menu a:hover{
   color: #EB3C62;
 }
  .navbar-brand:hover {
@@ -361,6 +364,19 @@ nav{
     </li>
     <li class="nav-item">
       <a href="/#faq" class="nav-link">Getting Started</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Category
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/imageUpload">Cancer</a>
+        <a class="dropdown-item" href="/covid">Covid-19</a>
+        <a class="dropdown-item" href="/bt">Brain Tumor</a>
+        <a class="dropdown-item" href="/alzymer">Alzymer</a>
+        <a class="dropdown-item" href="/pneumonia">Pneumonia</a>
+        <a class="dropdown-item" href="/malaria">Malaria</a>
+      </div>
     </li>
     </ul>
   </div>
