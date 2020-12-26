@@ -517,9 +517,7 @@ Our app will assess your photo using our CE marked</p>
      // Signed in 
     // ...
     //var url = "file:///C:/Users/HP/WebNode/fallfest%20frontend/profile.html";
-   var url ="https://skinegy.herokuapp.com/profile";
-	  url="https://hackfall.herokuapp.com/profile";
-           window.location.replace(url);
+   window.location = '/profile';
   })
   .catch((FirebaseAuthUserCollisionException) => {
     document.getElementById('registered').style.display="block";
@@ -544,9 +542,7 @@ Our app will assess your photo using our CE marked</p>
      	firebase.auth().signInWithEmailAndPassword(email, document.getElementById("password_l").value)
   .then(function(result) {
     // result.user.tenantId should be ‘TENANT_PROJECT_ID’.
-    var url = "https://skinegy.herokuapp.com/"+"imageUpload" ;
-		url="https://hackfall.herokuapp.com/imageUpload";
-           window.location.replace(url);
+		 window.location ='/imageUpload';
            console.log(result);
   }).catch(function(error) {
     // Handle error.
