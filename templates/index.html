@@ -295,6 +295,45 @@ nav{
   text-align: center;
   font-size: 0.75rem;
 }
+#btn-predict {
+  background-color: #915F6D;
+  color: #fff;
+  font-size: 0.8rem;
+  border-width: 0;
+  border-radius: 3px;
+  padding: 10px; 
+  -webkit-box-shadow: 0 0 10px #fff;
+        box-shadow: 0 0 10px #fff;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16), 0 0 0 2px rgba(0, 0, 0, 0.08);
+}
+#btn-predict:hover {
+  background-color: #C892A0;
+  border:1px #C892A0;
+  color: white;
+}
+
+
+.select {
+  color: #000;
+  font-size: 0.8rem;
+  border-width: 0;
+  margin:5px;
+  border-radius: 3px;
+  padding: 15px; 
+  cursor: pointer;
+}
+.active{
+  background-color: #915F6D;
+  color: #fff;
+  font-size: 0.8rem;
+  border-width: 0;
+  margin:5px;
+  border-radius: 3px;
+  padding: 15px; 
+  -webkit-box-shadow: 0 0 10px #fff;
+        box-shadow: 0 0 10px #fff;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.16), 0 0 0 2px rgba(0, 0, 0, 0.08);
+}
 
   </style>
 </head>
@@ -351,7 +390,6 @@ nav{
         </label>
         <input type="file" name="file" id="imageUpload" accept="image/*">
 <center>
-    <center> <div class="heading" style="display: none;"> <h2 style=" color: #915F6D;"><u>REPORT</u></h2></div></center>
     <div class="image-section">
         <div class="img-preview">
             <div id="imagePreview">
@@ -363,31 +401,34 @@ nav{
     </div>
     </center>
  </form>
-    <div class="loader" style="display:block;"></div>
 
                   </div>
-                </div>
-                <div class="col-3">
-                  <p id="result">
+                </div> 
+                <div class="col-6"> 
+                  <div class="row">
+                    <div class="col-2 select first active" onclick="first()" id="first"> 
+                      <div class="row d-flex justify-content-center">
+                        <i class="fas fa-link"></i>
+                      </div>
+                      <div class="row d-flex justify-content-center" style="margin-top: 5px;">
+                        Result
+                      </div> 
+                    </div>
+                    <div class="col-2 select second" onclick="second()" id="second"> 
+                      <div class="row d-flex justify-content-center">
+                        <i class="fas fa-file"></i>
+                      </div>
+                      <div class="row d-flex justify-content-center" style="margin-top: 5px;">
+                        Description
+                      </div>
+                    </div>
+                  </div>
+                  <div id="first1">
+                   <div class="loader" style="display:block;"></div>
+                  <p id="result">sonali
                      <span> </span>
-                    </p>
-                </div>
-                <div class="col-3">
-                  <p>
-                Diagnosis has never been more easier and reliable. Here at Medilab we bring together biology and AI 
-                to deliver you a trustworthy diagnosis.                
-              </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Why Us Section -->
-    
-    <div class="report" id="report" style="display:none;">
+                    </p>  </div>
+                    <div id="desc"  style="display:none;">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-3">
@@ -423,6 +464,22 @@ nav{
             </div>
         </div>
     </div>
+                </div>
+                <div class="col-3">
+                  <p style="color: #F5F5F5">
+                Diagnosis has never been more easier and reliable. Here at Medilab we bring together biology and AI 
+                to deliver you a trustworthy diagnosis.                
+              </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
+    
 
 </div>
 </body>
@@ -464,6 +521,21 @@ nav{
   window.alert("Please Sign-Up first!");
           }
     });
-
+ function second() {  
+  var first =document.getElementById("first");
+   var second =document.getElementById("second");
+  first.className = first.className.replace(" active", "");
+ second.className += " active";
+ document.getElementById("desc").style.display="block";
+ document.getElementById("first1").style.display="none";
+};
+ function first() {  
+  var first =document.getElementById("first");
+   var second =document.getElementById("second");
+  second.className = second.className.replace(" active", "");
+ first.className += " active";
+ document.getElementById("desc").style.display="none";
+ document.getElementById("first1").style.display="block";
+};
     </script>
     </html>
