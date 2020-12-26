@@ -88,7 +88,7 @@ nav{
 #hero {
   width: 100%;
   height: 90vh;
-  background: url("fixed.png") top center;
+  background-image: url('{{url_for('static', filename='fixed.png')}}');
   background-size: cover;
   position: relative;
   margin-bottom: -50px;
@@ -290,6 +290,52 @@ nav{
   </div>
   </div> 
 </nav>
+
+<section id="hero" class="d-flex align-items-center">
+    <div class="container">
+      <h1>Skinegy</h1>
+      <h2>An AI solution to diagnosis of Skin Cancer</h2>
+    </div>
+  </section>
+<section id="why-us" class="why-us">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-12 d-flex align-items-stretch">
+            <div class="content">
+              <h3>Skin Cancer Test</h3>
+              <div class="row">
+                <div class="col-6">
+                  <div class="image">
+                    <div class="top">
+                      <div class="row">
+                        <div class="col-5">
+                          <div class="ui"><i class="fas fa-image" aria-hidden="true" style="margin-right: 5px;"></i> Upload Image</div>
+                        </div>
+                      </div>
+                  </div>
+                    
+                  </div>
+                </div>
+                <div class="col-3">
+                  <p id="result">
+                     <span> </span>
+                    </p>
+                </div>
+                <div class="col-3">
+                  <p>
+                Diagnosis has never been more easier and reliable. Here at Medilab we bring together biology and AI 
+                to deliver you a trustworthy diagnosis.                
+              </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
     <form id="upload-file" method="post" enctype="multipart/form-data">
         <label for="imageUpload" class="upload-label">
             
