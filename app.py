@@ -31,8 +31,9 @@ def model_predict(file, model):
     image = np.transpose(image, (2, 0, 1)).astype(np.float32)
     image = torch.tensor([image], dtype=torch.float)
     preds = model(image)
+    probs  = np.array(preds)
     preds = np.argmax(preds.detach())
-    return preds
+    return preds,probs
 
 @app.route('/')
 def home():
@@ -46,27 +47,27 @@ def index():
     return render_template('index.html')
 
 @app.route('/covid',methods=['GET'])
-def index():
+def covid():
     # image upload page
     return render_template('covid.html')
 
 @app.route('/bt',methods=['GET'])
-def index():
+def bt():
     # image upload page
     return render_template('bt.html')
 
 @app.route('/malaria',methods=['GET'])
-def index():
+def malaria():
     # image upload page
     return render_template('malaria.html')
 
 @app.route('/pneumonia',methods=['GET'])
-def index():
+def pneumonia():
     # image upload page
     return render_template('pneumonia.html')
 
 @app.route('/alzymer',methods=['GET'])
-def index():
+def alzymer():
     # image upload page
     return render_template('alzymer.html')
 
@@ -83,9 +84,12 @@ def upload():
     labs=['MELANOMA (MALIGNANT)', 'MELANOCYTIC NEVUS (BENIGN)/ NORMAL SKIN /RASH', 'BASAL CELL CARCINOMA (BENIGN)', 'ACTINIC KERATOSIS (BENIGN)', 'BENIGN KERATOSIS (BENIGN)', 'DERMATOFIBROMA (NON CANCEROUS-BENIGN)', 'VASCULAR LESION (MAYBE BENIGN MAYBE MALIGNANT)', 'SQUAMOUS CELL CARCINOMA(MALIGNANT)']
 
     # Make prediction
-    preds = model_predict(f, model)
-    result = labs[preds]            
-    return result
+    preds,probs = model_predict(f, model)
+    result = labs[preds]
+    prob_dict={}
+    for x in range(len(labs)):
+        prob_dict[labs[x]]=probs[x]
+    return result,prob_dict
 
 
 if __name__ == '__main__':
