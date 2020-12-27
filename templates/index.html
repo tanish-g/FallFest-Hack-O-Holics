@@ -606,14 +606,19 @@ nav{
             async: true,
             success: function (data) {
                 // Get and display the result
-                data=JSON.stringify(data);
+              /*  data=JSON.stringify(data);
                 $('.loader').hide();
                 $('#result').fadeIn(600);
                 $('#result').text(' Result:  ' + data);
                 console.log(data+'\n');
                 $('.report').show();
-                $('.heading').show();
-                console.log('Success!');
+                $('.heading').show(); */
+               //console.log(data);
+                var obj = JSON.parse(data);
+                var obj2=JSON.stringify(data);
+                alert(obj2);
+                console.log(obj2);
+                console.log('\nSuccess!');
             },
         });
     });
