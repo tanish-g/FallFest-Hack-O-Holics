@@ -614,11 +614,8 @@ nav{
                 $('.report').show();
                 $('.heading').show(); */
                //console.log(data);
-                var obj = JSON.parse(data);
-                var obj2=JSON.stringify(data);
-                alert(obj2);
-                console.log(obj2);
-                console.log('\nSuccess!');
+                $('.loader').hide();
+                console.log('Success!');
             },
         });
     });
