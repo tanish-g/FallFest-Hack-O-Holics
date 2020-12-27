@@ -11,7 +11,7 @@ import albumentations as aug
 from efficientnet_pytorch import EfficientNet
 
 # Flask utils
-from flask import Flask, redirect, url_for, request, render_template
+from flask import Flask, redirect, url_for, request, render_template, jsonify
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 
@@ -89,7 +89,7 @@ def upload():
     prob_dict={}
     for x in range(len(labs)):
         prob_dict[labs[x]]=probs[x]
-    return prob_dict
+    return jsonify(prob_dict)
 
 
 if __name__ == '__main__':
