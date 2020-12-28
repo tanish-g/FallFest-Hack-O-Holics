@@ -31,9 +31,8 @@ def model_predict(file, model):
     image = np.transpose(image, (2, 0, 1)).astype(np.float32)
     image = torch.tensor([image], dtype=torch.float)
     preds = model(image)
-    probs  = np.array(preds)
     preds = np.argmax(preds.detach())
-    return preds,probs
+    return preds
 
 @app.route('/')
 def home():
@@ -84,12 +83,9 @@ def upload():
     labs=['MELANOMA (MALIGNANT)', 'MELANOCYTIC NEVUS (BENIGN)/ NORMAL SKIN /RASH', 'BASAL CELL CARCINOMA (BENIGN)', 'ACTINIC KERATOSIS (BENIGN)', 'BENIGN KERATOSIS (BENIGN)', 'DERMATOFIBROMA (NON CANCEROUS-BENIGN)', 'VASCULAR LESION (MAYBE BENIGN MAYBE MALIGNANT)', 'SQUAMOUS CELL CARCINOMA(MALIGNANT)']
 
     # Make prediction
-    preds,probs = model_predict(f, model)
-    result = labs[preds]
-    prob_dict={}
-    for x in range(len(labs)):
-        prob_dict[labs[x]]=probs[x]
-    return result,prob_dict
+    preds = model_predict(f, model)
+    result = labs[preds]            
+    return result
 
 
 if __name__ == '__main__':
