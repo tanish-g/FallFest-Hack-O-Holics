@@ -89,7 +89,7 @@ def upload():
     prob_dict={}
     for x in range(len(labs)):
         prob_dict[labs[x]]=probs[x]
-    return result,prob_dict
+    return jsonify(result=result,prob_dict=prob_dict)
 
 
 if __name__ == '__main__':
