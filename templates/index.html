@@ -447,7 +447,6 @@ nav{
                     </div>
                   </div>
                   <div id="first1">
-                    <p>This is prob: {{data}}</p>
                    <div class="loader" style="display:block;"></div>
                   <p id="result">
                      <span> </span>
@@ -561,7 +560,5 @@ nav{
  document.getElementById("desc").style.display="none";
  document.getElementById("first1").style.display="block";
 };
-   var parsed = JSON.parse('{{data | tojson}}');
-  document.write(parsed);
     </script>
     </html>
