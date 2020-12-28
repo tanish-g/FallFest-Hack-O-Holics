@@ -31,7 +31,7 @@ def model_predict(file, model):
     image = np.transpose(image, (2, 0, 1)).astype(np.float32)
     image = torch.tensor([image], dtype=torch.float)
     preds = model(image)
-    probs  = preds.detach().numpy()
+    probs  = np.array(preds.detach())
     preds = np.argmax(preds.detach())
     return preds,probs
 
