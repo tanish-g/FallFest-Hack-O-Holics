@@ -90,6 +90,7 @@ def upload():
     for x in range(len(labs)):
         prob_dict[labs[x]]=probs[x]
     return result
+    return render_template("template1.html", data=data)
 
 
 if __name__ == '__main__':
