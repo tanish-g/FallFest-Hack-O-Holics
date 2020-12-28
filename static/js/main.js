@@ -37,10 +37,6 @@ $(document).ready(function () {
             type: 'POST',
             url: '/predict',
             data: form_data,
-            contentType: false,
-            cache: false,
-            processData: false,
-            async: true,
             success: function (data) {
                 // Get and display the result
                 $('.loader').hide();
@@ -48,7 +44,6 @@ $(document).ready(function () {
                // $('#result').text(' Result:  ' + data);
                 console.log(data+'\n');
                 $('.report').show();
-                $('.heading').show();
                 console.log('Success!');
             },
         });
