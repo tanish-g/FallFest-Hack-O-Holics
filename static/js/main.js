@@ -45,8 +45,8 @@ $(document).ready(function () {
                 // Get and display the result
                 $('.loader').hide();
                 $('#result').fadeIn(600);
-                $('#result').text(' Result:  ' + data);
-                console.log(data+"\n");
+               // $('#result').text(' Result:  ' + data);
+                console.log(data+'\n');
                 $('.report').show();
                 $('.heading').show();
                 console.log('Success!');
